@@ -134,6 +134,7 @@ app.post("/api/auth/login", (req, res)=> {
 });
 
 app.post("/api/auth/addproject", async (req, res)=> {
+    console.log(req.body);
     const proj = new Project({...req.body});
     await proj.save();
 })
