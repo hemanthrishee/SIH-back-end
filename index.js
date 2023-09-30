@@ -11,8 +11,6 @@ app.use(cors({
     origin: ["http://localhost:3000"]
 }));
 app.use(express.json());
-app.use(bodyParser.json({ limit: "5gb", extended: true }));
-app.use(bodyParser.urlencoded({ limit: "5gb", extended: true }));
 const saltRounds = process.env.SALT_ROUNDS;
 
 mongoose.connect("mongodb+srv://nhemanthrishee2003:Hrvn_123@cluster0.qndqjcq.mongodb.net/?retryWrites=true&w=majority");
@@ -86,7 +84,6 @@ app.post("/api/auth/register", (req, res)=> {
 app.post("/api/auth/login", (req, res)=> {
     async function search() {
         const {email, password, univ} = req.body;
-        console.log(req.body);
         if (univ) {
             const user = await University.findOne({email: email});
             if (!user)
